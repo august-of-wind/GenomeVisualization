@@ -1,8 +1,9 @@
+//The following code is based on VirtualScroller.js by Bill D White, adapted for use with bioinformatic research at Argonne National Laboratory
 
-    //The following code is based on VirtualScroller.js by Bill D White, adapted for use with bioinformatic research at Argonne National Laboratory
-    function scrollVirtually(fastaData){
-    $.get(fastaData, function(data){
-        d3.json(fastaData, function (data) {
+function ScrollVirtually(JsonData)
+{
+        var data = JSON.parse(JsonData);
+        console.log(data);
 
         var colorScale = d3.scale.category20();
 
@@ -53,7 +54,7 @@
             .update(rowUpdate)
             .exit(rowExit)
             .svg(scrollSVG)
-            .totalRows(50) //TODO: Change this to an arbitrary length of JSON - need to iterate through JSON object 
+            .totalRows(30000000) //TODO: Change this to an arbitrary length of JSON - need to iterate through JSON object 
             .viewport(d3.select(".viewport"));
 
         // tack on index to each data item for easy to read display
@@ -94,10 +95,7 @@
                 .attr("in", "SourceGraphic")
                 .attr("in2", "blurOut")
                 .attr("mode", "normal");
+            }
         }
-
-    });
-    })
-    
-}
+        //CGAGAAGGTCAGG
 

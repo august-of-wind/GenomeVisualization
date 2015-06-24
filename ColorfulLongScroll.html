@@ -39,21 +39,31 @@
         }
     </style>
     <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://127.0.0.1:8000/CreateJSON.js"></script>
     <script src="http://127.0.0.1:8000/VirtualScroller.js"></script>
-    <script src="http://127.0.0.1:8000/FastaParser.js"></script>
+    <script src="http://127.0.0.1:8000/ParseFasta.js"></script>
     <script src="http://127.0.0.1:8000/jquery-1.11.3.js"></script>
-    <script src="http://127.0.0.1:8000/ScrollerScript.js"></script>
+    <script src="http://127.0.0.1:8000/ScrollVirtually.js"></script>
+
 </head>
 <body>
 <div class="viewport"></div>
 <div class="information"></div>
 
 <script>
+// console.log("I have reached the ParseFasta invocation!");
+// var something = ParseFasta("http://127.0.0.1:8000/MabFasta.fasta");
+// console.log("ParseFasta completed!");
+// console.log("I have reached the CreateJSON invocation!");
+// var json =  CreateJSON(something);
+// console.log("CreateJSON completed!");
+//console.log(ParseFasta("http://127.0.0.1:8000/MabFasta.fasta"));
 console.log("I have reached the scrollVirtually invocation!");
-// var something = getFasta("http://127.0.0.1:8000/MabFasta.fasta");
-// console.log("This is the length of the fastaData: " + something.length);
-scrollVirtually("http://127.0.0.1:8000/testFasta.json");
-console.log("Done with scrollVirtually invocation!");
+//var something = ParseFasta("http://127.0.0.1:8000/MabFasta.fasta", CreateJSON);
+
+ParseFasta("http://127.0.0.1:8000/MabFasta.fasta", CreateJSON, ScrollVirtually);
+
+console.log("scrollVirtually completed!")
 </script>
 
 </body>
