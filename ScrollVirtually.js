@@ -3,7 +3,8 @@
 function ScrollVirtually(JsonData)
 {
         var data = JSON.parse(JsonData);
-        console.log(data);
+
+       console.log("Done Parsing!");
 
         var colorScale = d3.scale.category20();
 
@@ -15,7 +16,7 @@ function ScrollVirtually(JsonData)
         createFilters(defs);
 
         var chartGroup = scrollSVG.append("g")
-            .attr("class", "chartGroup")
+            .attr("class", "chartGroup");
             //.attr("filter", "url(#dropShadow1)"); // sometimes causes issues in chrome
 
         chartGroup.append("rect")
@@ -33,6 +34,7 @@ function ScrollVirtually(JsonData)
             rowSelection.append("text")
                 .attr("transform", "translate(10,15)");
         };
+
         var rowUpdate = function(rowSelection) {
             rowSelection.select("rect")
                 .attr("fill", function(d) {
@@ -54,7 +56,7 @@ function ScrollVirtually(JsonData)
             .update(rowUpdate)
             .exit(rowExit)
             .svg(scrollSVG)
-            .totalRows(30000000) //TODO: Change this to an arbitrary length of JSON - need to iterate through JSON object 
+            .totalRows(1679403)
             .viewport(d3.select(".viewport"));
 
         // tack on index to each data item for easy to read display
@@ -98,4 +100,3 @@ function ScrollVirtually(JsonData)
             }
         }
         //CGAGAAGGTCAGG
-

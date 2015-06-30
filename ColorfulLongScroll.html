@@ -17,7 +17,7 @@
             left: 15px;
             overflow-y: auto;
             width: 280px;
-            height: 400px;
+            height: 500px;
             background-color: #e8e8e8;
             border: 1px solid #AAAAAA;
             border-radius: 4px;
@@ -39,11 +39,11 @@
         }
     </style>
     <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://127.0.0.1:8000/CreateJSON.js"></script>
-    <script src="http://127.0.0.1:8000/VirtualScroller.js"></script>
-    <script src="http://127.0.0.1:8000/ParseFasta.js"></script>
-    <script src="http://127.0.0.1:8000/jquery-1.11.3.js"></script>
-    <script src="http://127.0.0.1:8000/ScrollVirtually.js"></script>
+    <script src="/CreateJSON.js"></script>
+    <script src="/VirtualScroller.js"></script>
+    <script src="/ParseFasta.js"></script>
+    <script src="/jquery-1.11.3.js"></script>
+    <script src="/ScrollVirtually.js"></script>
 
 </head>
 <body>
@@ -51,19 +51,12 @@
 <div class="information"></div>
 
 <script>
-// console.log("I have reached the ParseFasta invocation!");
-// var something = ParseFasta("http://127.0.0.1:8000/MabFasta.fasta");
-// console.log("ParseFasta completed!");
-// console.log("I have reached the CreateJSON invocation!");
-// var json =  CreateJSON(something);
-// console.log("CreateJSON completed!");
-//console.log(ParseFasta("http://127.0.0.1:8000/MabFasta.fasta"));
-console.log("I have reached the scrollVirtually invocation!");
-//var something = ParseFasta("http://127.0.0.1:8000/MabFasta.fasta", CreateJSON);
 
-ParseFasta("http://127.0.0.1:8000/MabFasta.fasta", CreateJSON, ScrollVirtually);
+console.log("I have reached the scrollVirtually invocation! Now waiting for parser to finish...");
 
-console.log("scrollVirtually completed!")
+ParseFasta("/MabFasta.fasta", CreateJSON, ScrollVirtually);
+
+
 </script>
 
 </body>
