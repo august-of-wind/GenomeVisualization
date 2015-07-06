@@ -1,7 +1,5 @@
 d3.VirtualScroller = function() 
 {
-
-
     var enter = null,
         update = null,
         exit = null,
@@ -21,11 +19,16 @@ d3.VirtualScroller = function()
 
     function virtualscroller(container) {
         function render(resize) {
+            return;
             if (resize) {                                                                      // re-calculate height of viewport and # of visible row
                 viewportHeight = parseInt(viewport.style("height"));
                 visibleRows = Math.ceil(viewportHeight / rowHeight) + 1;                       // add 1 more row for extra overlap; avoids visible add/remove at top/bottom 
+                
             }
+            //return;
+            //var scrollTop = viewport.node().scrollTop;
             var scrollTop = viewport.node().scrollTop;
+            console.log(scrollTop);
             totalHeight = Math.max(minHeight, (totalRows * rowHeight));
             console.log("Total Rows: " + totalRows);
             console.log("rowHeight: " + rowHeight);
@@ -39,6 +42,7 @@ d3.VirtualScroller = function()
 
 
         function scrollRenderFrame(scrollPosition) {
+            //return;
             container.attr("transform", "translate(0," + (scrollPosition * rowHeight) + ")");   // position viewport to stay visible
             var position0 = Math.max(0, Math.min(scrollPosition, totalRows - visibleRows + 1)), // calculate positioning (use + 1 to offset 0 position vs totalRow count diff) 
                 position1 = position0 + visibleRows;
@@ -75,8 +79,8 @@ d3.VirtualScroller = function()
         render(true);                                                                           // call render() to start
     }
 
-    virtualscroller.render = function(resize) {                                                 // placeholder function that is overridden at runtime
-    };
+    // virtualscroller.render = function(resize) {                                                 // placeholder function that is overridden at runtime
+    // };
 
     virtualscroller.data = function(_, __) {
         if (!arguments.length) return data;
@@ -133,14 +137,14 @@ d3.VirtualScroller = function()
         return virtualscroller;
     };
 
-    virtualscroller.position = function(_) {
-        if (!arguments.length) return position;
-        position = +_;
-        if (viewport) {
-            viewport.node().scrollTop = position;
-        }
-        return virtualscroller;
-    };
+    // virtualscroller.position = function(_) {
+    //     if (!arguments.length) return position;
+    //     position = +_;
+    //     if (viewport) {
+    //         viewport.node().scrollTop = position;
+    //     }
+    //     return virtualscroller;
+    // };
 
     virtualscroller.svg = function(_) {
         if (!arguments.length) return svg;

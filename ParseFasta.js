@@ -12,7 +12,7 @@ function ParseFasta(fastaFile, createJSONCallback, scrollVirtuallyCallback) {
         { //if part of sequence, add nucleotides to geneArray
     			if(lines[lineIndex] !== "")
           { //skip any blank lines
-            var currentLine = lines[lineIndex].replace(/\s+/g, '');
+            var currentLine = lines[lineIndex].replace(/\s+/g, ''); //strip whitespace
     				var splitLine = currentLine.split("");//split the lines by character, i.e., by nucleotide
     				for(var splitLineIndex = 0, splitLineLength = splitLine.length; splitLineIndex < splitLineLength; ++splitLineIndex)
             {

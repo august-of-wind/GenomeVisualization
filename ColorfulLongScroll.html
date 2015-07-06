@@ -17,7 +17,7 @@
             left: 15px;
             overflow-y: auto;
             width: 280px;
-            height: 500px;
+            height: 400px;
             background-color: #e8e8e8;
             border: 1px solid #AAAAAA;
             border-radius: 4px;
@@ -28,9 +28,11 @@
         }
         .longscroll .row {
             font-family: Arial;
-            font-size: 11px;
-            height: 19px;
-            padding: 0 8px;
+/*            font-size: 11px;
+            height: 19px;*/
+            font-size: 6px;
+            height: 9px;
+            padding: 8px;
             border-bottom: solid #eee 1px;
         }
 
@@ -39,11 +41,11 @@
         }
     </style>
     <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="/CreateJSON.js"></script>
-    <script src="/VirtualScroller.js"></script>
-    <script src="/ParseFasta.js"></script>
-    <script src="/jquery-1.11.3.js"></script>
-    <script src="/ScrollVirtually.js"></script>
+    <script src="CreateJSON.js"></script>
+    <script src="VirtualScroller.js"></script>
+    <script src="ParseFasta.js"></script>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="ScrollVirtually.js"></script>
 
 </head>
 <body>
@@ -52,9 +54,9 @@
 
 <script>
 
-console.log("I have reached the scrollVirtually invocation! Now waiting for parser to finish...");
+console.log("I have reached the scrollVirtually invocation!\nNow waiting for parser to finish...");
 
-ParseFasta("/MabFasta.fasta", CreateJSON, ScrollVirtually);
+ParseFasta("MabFasta.fasta", CreateJSON, ScrollVirtually);
 
 
 </script>

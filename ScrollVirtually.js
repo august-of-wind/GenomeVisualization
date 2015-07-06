@@ -51,12 +51,12 @@ function ScrollVirtually(JsonData)
 
 
         var virtualScroller = d3.VirtualScroller()
-            .rowHeight(30)
+            .rowHeight(24)
             .enter(rowEnter)
             .update(rowUpdate)
             .exit(rowExit)
             .svg(scrollSVG)
-            .totalRows(1679403)
+            .totalRows(5090494)
             .viewport(d3.select(".viewport"));
 
         // tack on index to each data item for easy to read display
