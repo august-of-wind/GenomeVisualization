@@ -1,0 +1,44 @@
+##fileformat=VCFv4.2
+##FILTER=<ID=PASS,Description="All filters passed">
+##samtoolsVersion=1.1+htslib-1.1
+##samtoolsCommand=samtools mpileup -uf Mab.fasta 45.Mab.bwa.mem.sorted.bam
+##reference=file://Mab.fasta
+##contig=<ID=Mab_g,length=5067172>
+##contig=<ID=Mab_p,length=23319>
+##ALT=<ID=X,Description="Represents allele(s) other than observed.">
+##INFO=<ID=INDEL,Number=0,Type=Flag,Description="Indicates that the variant is an INDEL.">
+##INFO=<ID=IDV,Number=1,Type=Integer,Description="Maximum number of reads supporting an indel">
+##INFO=<ID=IMF,Number=1,Type=Float,Description="Maximum fraction of reads supporting an indel">
+##INFO=<ID=DP,Number=1,Type=Integer,Description="Raw read depth">
+##INFO=<ID=VDB,Number=1,Type=Float,Description="Variant Distance Bias for filtering splice-site artefacts in RNA-seq data (bigger is better)",Version="3">
+##INFO=<ID=RPB,Number=1,Type=Float,Description="Mann-Whitney U test of Read Position Bias (bigger is better)">
+##INFO=<ID=MQB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality Bias (bigger is better)">
+##INFO=<ID=BQB,Number=1,Type=Float,Description="Mann-Whitney U test of Base Quality Bias (bigger is better)">
+##INFO=<ID=MQSB,Number=1,Type=Float,Description="Mann-Whitney U test of Mapping Quality vs Strand Bias (bigger is better)">
+##INFO=<ID=SGB,Number=1,Type=Float,Description="Segregation based metric.">
+##INFO=<ID=MQ0F,Number=1,Type=Float,Description="Fraction of MQ0 reads (smaller is better)">
+##INFO=<ID=I16,Number=16,Type=Float,Description="Auxiliary tag used for calling, see description of bcf_callret1_t in bam2bcf.h">
+##INFO=<ID=QS,Number=R,Type=Float,Description="Auxiliary tag used for calling">
+##FORMAT=<ID=PL,Number=G,Type=Integer,Description="List of Phred-scaled genotype likelihoods">
+##FORMAT=<ID=GT,Number=1,Type=String,Description="Genotype">
+##INFO=<ID=AF1,Number=1,Type=Float,Description="Max-likelihood estimate of the first ALT allele frequency (assuming HWE)">
+##INFO=<ID=AC1,Number=1,Type=Float,Description="Max-likelihood estimate of the first ALT allele count (no HWE assumption)">
+##INFO=<ID=MQ,Number=1,Type=Integer,Description="Root-mean-square mapping quality of covering reads">
+##INFO=<ID=FQ,Number=1,Type=Float,Description="Phred probability of all samples being the same">
+##INFO=<ID=PV4,Number=4,Type=Float,Description="P-values for strand bias, baseQ bias, mapQ bias and tail distance bias">
+##INFO=<ID=G3,Number=3,Type=Float,Description="ML estimate of genotype frequencies">
+##INFO=<ID=HWE,Number=1,Type=Float,Description="Chi^2 based HWE test P-value based on G3">
+##INFO=<ID=DP4,Number=4,Type=Integer,Description="Number of high-quality ref-forward , ref-reverse, alt-forward and alt-reverse bases">
+##bcftools_callVersion=0.0.1+htslib-0.2.0-rc7-9-g0180921
+##bcftools_callCommand=call -O v -v -c
+#CHROM	POS	ID	REF	ALT	QUAL	FILTER	INFO	FORMAT	45.Mab.bwa.mem.sorted.bam
+Mab_g	81390	.	CAA	CAAA	17.548	.	INDEL;IDV=1;IMF=0.01;DP=99;VDB=0.84813;SGB=-0.590765;MQSB=1;MQ0F=0;AF1=1;AC1=2;DP4=1,0,4,1;MQ=60;FQ=-37.5258;PV4=1,1,1,1	GT:PL	1/1:55,3,0
+Mab_g	81392	.	AC	ACC	214.458	.	INDEL;IDV=98;IMF=0.98;DP=100;VDB=0.446183;SGB=-0.693147;MQSB=1;MQ0F=0;AF1=1;AC1=2;DP4=0,0,54,39;MQ=60;FQ=-289.528	GT:PL	1/1:255,255,0
+Mab_g	280242	.	T	C	214.458	.	DP=50;VDB=0.212751;SGB=-0.693147;MQSB=1;MQ0F=0;AF1=1;AC1=2;DP4=0,0,22,28;MQ=60;FQ=-185.527	GT:PL	1/1:255,151,0
+Mab_g	1150461	.	T	A	214.458	.	DP=79;VDB=0.638077;SGB=-0.693147;MQSB=1;MQ0F=0;AF1=1;AC1=2;DP4=0,0,44,26;MQ=60;FQ=-245.528	GT:PL	1/1:255,211,0
+Mab_g	2106418	.	G	A	214.458	.	DP=80;VDB=0.904627;SGB=-0.693147;MQSB=1;MQ0F=0;AF1=1;AC1=2;DP4=0,0,24,48;MQ=60;FQ=-251.528	GT:PL	1/1:255,217,0
+Mab_g	2583761	.	G	A	214.458	.	DP=89;VDB=0.554551;SGB=-0.693147;MQSB=1;MQ0F=0;AF1=1;AC1=2;DP4=0,0,44,35;MQ=60;FQ=-272.528	GT:PL	1/1:255,238,0
+Mab_g	2635537	.	CGGGGGG	CGGGGG	137.457	.	INDEL;IDV=77;IMF=0.939024;DP=82;VDB=0.955448;SGB=-0.693147;MQSB=1;MQ0F=0;AF1=1;AC1=2;DP4=0,0,31,42;MQ=60;FQ=-254.528	GT:PL	1/1:178,220,0
+Mab_g	2896546	.	A	ATGCTCAAATGTGCGCAAATCGGACGATTTTGCGCACATTTGAGCATGCTCGCGCTT	214.459	.	INDEL;IDV=13;IMF=0.232143;DP=56;VDB=8.54526e-05;SGB=-0.683931;MQSB=1;MQ0F=0;AF1=1;AC1=2;DP4=0,0,9,4;MQ=60;FQ=-73.5254	GT:PL	1/1:255,39,0
+Mab_g	3831238	.	T	G	12.7052	.	DP=43;VDB=0.369149;SGB=-0.651104;RPB=0.840624;MQB=1;MQSB=1;BQB=0.00432024;MQ0F=0;AF1=0.499997;AC1=1;DP4=5,22,8,0;MQ=60;FQ=15.5971;PV4=5.46826e-05,0.000817354,1,1	GT:PL	0/1:50,0,255
+Mab_g	4948086	.	CGGGG	CGGG	191.458	.	INDEL;IDV=66;IMF=0.942857;DP=69;VDB=0.269617;SGB=-0.693147;MQSB=1;MQ0F=0;AF1=1;AC1=2;DP4=0,0,49,13;MQ=60;FQ=-221.527	GT:PL	1/1:232,187,0

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Virtual Scrolling Demo</title>
+    <title>Genome Visualization</title>
     <style>
         html, body {
             width: 100%;
@@ -44,6 +44,7 @@
     <script src="ParseFasta.js"></script>
     <script src="jquery-1.11.3.js"></script>
     <script src="ScrollVirtually.js"></script>
+    <script src="ParseVCF.js"></script>
 
 </head>
 <body>
@@ -53,8 +54,8 @@
 <script>
 
 console.log("I have reached the scrollVirtually invocation! Now waiting for parser to finish...");
-
-ParseFasta("MabFasta.fasta", CreateJSON, ScrollVirtually);
+ParseVCF("niceVCF.vcf");
+//ParseFasta("MabFasta.fasta", CreateJSON, ScrollVirtually);
 
 
 </script>
