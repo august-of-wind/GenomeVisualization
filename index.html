@@ -42,7 +42,7 @@
     <script src="CreateJSON.js"></script>
     <script src="VirtualScroller.js"></script>
     <script src="ParseFasta.js"></script>
-    <script src="jquery-1.11.3.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="ScrollVirtually.js"></script>
     <script src="ParseVCF.js"></script>
 
@@ -54,8 +54,8 @@
 <script>
 
 console.log("I have reached the scrollVirtually invocation! Now waiting for parser to finish...");
-//ParseVCF("niceVCF.vcf");
-ParseFasta("MabFasta.fasta", CreateJSON, ScrollVirtually);
+//ParseVCF("niceVCF.vcf"); Commented out until VCF variants are added to visualization. Parsing works, outputs JSON
+ParseFasta("MabFasta.fasta", CreateJSON, ScrollVirtually); //Using MabFasta as a testing fasta file. Code will work for any fasta file.
 
 
 </script>

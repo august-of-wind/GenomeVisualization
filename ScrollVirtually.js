@@ -4,7 +4,7 @@ function ScrollVirtually(JsonData)
 {
         var data = JSON.parse(JsonData);
 
-       console.log("Done Parsing!");
+        console.log("Done Parsing!");
 
         var colorScale = d3.scale.category20();
 
@@ -38,7 +38,15 @@ function ScrollVirtually(JsonData)
         var rowUpdate = function(rowSelection) {
             rowSelection.select("rect")
                 .attr("fill", function(d) {
-                    return colorScale(d.id);
+                    if(d.label !== "A" && d.label !== "T" && d.label !== "C" && d.label !== "G"){
+                        console.log("Got blue");
+                        var blue = "#17becf";
+                        return blue;
+                    }
+                    console.log("Got green")
+                    var green = "#74c476";
+                    return green;
+                    //return colorScale(d.id);
                 });
             rowSelection.select("text")
                 .text(function (d) {
@@ -99,4 +107,3 @@ function ScrollVirtually(JsonData)
                 .attr("mode", "normal");
             }
         }
-        //CGAGAAGGTCAGG

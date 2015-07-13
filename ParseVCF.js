@@ -1,5 +1,7 @@
 function ParseVCF(vcfFile) 
 {
+  //The following code is a VCF parser for javascript, that outputs a JSON object containing the CHROM, POS, REF, and ALT of all variants
+  //in a VCF file.
   var tempArray = [];
   $.get(vcfFile).done(function(data){
   var lines = data.split("\n");  //split file by lines

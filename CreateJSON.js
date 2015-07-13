@@ -7,11 +7,6 @@ function CreateJSON(parsedData)
     	items: []
     };
 
-	var titleOfGene;
-    var nucleotide;
-    var id;
-
-
     var idCount = 0;
     var contigCount = 0;
 
