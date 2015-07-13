@@ -3,9 +3,10 @@
 function ScrollVirtually(JsonData)
 {
         var data = JSON.parse(JsonData);
-        console.log(data);
 
-        var colorScale = d3.scale.category20();
+        console.log("Done Parsing!");
+
+
 
         var scrollSVG = d3.select(".viewport").append("svg")
             .attr("class", "scroll-svg");
@@ -15,7 +16,7 @@ function ScrollVirtually(JsonData)
         createFilters(defs);
 
         var chartGroup = scrollSVG.append("g")
-            .attr("class", "chartGroup")
+            .attr("class", "chartGroup");
             //.attr("filter", "url(#dropShadow1)"); // sometimes causes issues in chrome
 
         chartGroup.append("rect")
@@ -33,10 +34,18 @@ function ScrollVirtually(JsonData)
             rowSelection.append("text")
                 .attr("transform", "translate(10,15)");
         };
+
         var rowUpdate = function(rowSelection) {
             rowSelection.select("rect")
                 .attr("fill", function(d) {
-                    return colorScale(d.id);
+                    if(d.label !== "A" && d.label !== "T" && d.label !== "C" && d.label !== "G"){
+                        console.log("Got blue");
+                        var blue = "#17becf";
+                        return blue;
+                    }
+                    console.log("Got green")
+                    var green = "#74c476";
+                    return green;
                 });
             rowSelection.select("text")
                 .text(function (d) {
@@ -54,7 +63,7 @@ function ScrollVirtually(JsonData)
             .update(rowUpdate)
             .exit(rowExit)
             .svg(scrollSVG)
-            .totalRows(30000000) //TODO: Change this to an arbitrary length of JSON - need to iterate through JSON object 
+            .totalRows(5090493)
             .viewport(d3.select(".viewport"));
 
         // tack on index to each data item for easy to read display
@@ -97,5 +106,3 @@ function ScrollVirtually(JsonData)
                 .attr("mode", "normal");
             }
         }
-        //CGAGAAGGTCAGG
-
