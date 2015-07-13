@@ -1,9 +1,8 @@
-function ParseFasta(fastaFile, createJSONCallback, scrollVirtuallyCallback)
-{
+function ParseFasta(fastaFile, createJSONCallback, scrollVirtuallyCallback) {
     var tempArray = [];
     $.get(fastaFile).done(function(data){
       var geneArray = [];
-    	var lines = data.split("\n"); //split file by lines
+    	var lines = data.split("\n");  //split file by lines
     	var geneTitleArray = [];
     	var geneTitleArrayIndex = 0;
 
@@ -11,9 +10,10 @@ function ParseFasta(fastaFile, createJSONCallback, scrollVirtuallyCallback)
       {
     		if(lines[lineIndex].indexOf(">") == -1)
         { //if part of sequence, add nucleotides to geneArray
-    			if(lines[lineIndex] != "")
+    			if(lines[lineIndex] !== "")
           { //skip any blank lines
-    				var splitLine = lines[lineIndex].split("");//split the lines by character, i.e., by nucleotide
+            var currentLine = lines[lineIndex].replace(/\s+/g, '');
+    				var splitLine = currentLine.split("");//split the lines by character, i.e., by nucleotide
     				for(var splitLineIndex = 0, splitLineLength = splitLine.length; splitLineIndex < splitLineLength; ++splitLineIndex)
             {
    						geneArray.push(splitLine[splitLineIndex]);
@@ -25,12 +25,10 @@ function ParseFasta(fastaFile, createJSONCallback, scrollVirtuallyCallback)
    				var currentTitle = lines[lineIndex];
    				geneTitleArray.push(currentTitle);
    				geneArray.push(currentTitle);
-    			geneTitleArrayIndex++;		
+    			geneTitleArrayIndex++;
     		}
     	}
-      //console.log("GeneArray first index: " + geneArray[0]);
-      //console.log("Gene Array 650 index: " + geneArray[650]);
-
+      console.log("Size of geneArray: " + geneArray.length);
       scrollVirtuallyCallback(createJSONCallback(geneArray));
-    }); 
+    });
 }
