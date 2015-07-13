@@ -1,8 +1,0 @@
-{ "items": [
-		{"id":"1", "label":"G", "name": "G"},
-		{"id":"2", "label":"C", "name": "C"},
-		{"id":"3", "label":"A", "name": "A"},
-		{"id":"4", "label":"T", "name": "T"},
-		{"id":"5", "label":"A", "name": "A"},
-		{"id":"6", "label":"C", "name": "C"}
-	]}
