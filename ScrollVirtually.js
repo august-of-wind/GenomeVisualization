@@ -39,7 +39,7 @@ function ScrollVirtually(JsonData)
             rowSelection.select("rect")
                 .attr("fill", function(d) {
                     if(d.label !== "A" && d.label !== "T" && d.label !== "C" && d.label !== "G"){
-                        console.log("Got blue");
+                        console.log("Got blue!");
                         var blue = "#17becf";
                         return blue;
                     }
