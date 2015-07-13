@@ -6,7 +6,7 @@ function ScrollVirtually(JsonData)
 
         console.log("Done Parsing!");
 
-        var colorScale = d3.scale.category20();
+
 
         var scrollSVG = d3.select(".viewport").append("svg")
             .attr("class", "scroll-svg");
@@ -46,7 +46,6 @@ function ScrollVirtually(JsonData)
                     console.log("Got green")
                     var green = "#74c476";
                     return green;
-                    //return colorScale(d.id);
                 });
             rowSelection.select("text")
                 .text(function (d) {
@@ -64,7 +63,7 @@ function ScrollVirtually(JsonData)
             .update(rowUpdate)
             .exit(rowExit)
             .svg(scrollSVG)
-            .totalRows(1679403)
+            .totalRows(5090493)
             .viewport(d3.select(".viewport"));
 
         // tack on index to each data item for easy to read display
