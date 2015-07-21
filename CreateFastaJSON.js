@@ -1,4 +1,4 @@
-function CreateJSON(parsedData)
+function CreateFastaJSON(parsedData)
 {
 	var geneArrayLength = parsedData.length; //declare a constant geneArray length
 

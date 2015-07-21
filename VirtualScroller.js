@@ -27,8 +27,6 @@ d3.VirtualScroller = function()
             }
             var scrollTop = viewport.node().scrollTop;
             totalHeight = Math.max(minHeight, (totalRows * rowHeight));
-            console.log("Total Rows: " + totalRows);
-            console.log("rowHeight: " + rowHeight);
             svg.style("height", totalHeight + "px")                                            // both style and attr height values seem to be respected
                 .attr("height", totalHeight);
             var lastPosition = position;

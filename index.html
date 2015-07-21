@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -16,7 +17,7 @@
             top: 15px;
             left: 15px;
             overflow-y: auto;
-            width: 280px;
+            width: 560px;
             height: 500px;
             background-color: #e8e8e8;
             border: 1px solid #AAAAAA;
@@ -30,7 +31,7 @@
             font-family: Arial;
             font-size: 11px;
             height: 19px;
-            padding: 0 8px;
+            padding: 0px;
             border-bottom: solid #eee 1px;
         }
 
@@ -39,12 +40,14 @@
         }
     </style>
     <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="CreateJSON.js"></script>
+    <script src="CreateFastaJSON.js"></script>
     <script src="VirtualScroller.js"></script>
     <script src="ParseFasta.js"></script>
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="ScrollVirtually.js"></script>
     <script src="ParseVCF.js"></script>
+    <script src= "CreateVCFJSON.js"></script>
+
 
 </head>
 <body>
@@ -55,7 +58,9 @@
 
 console.log("I have reached the scrollVirtually invocation! Now waiting for parser to finish...");
 //ParseVCF("niceVCF.vcf"); Commented out until VCF variants are added to visualization. Parsing works, outputs JSON
-ParseFasta("MabFasta.fasta", CreateJSON, ScrollVirtually); //Using MabFasta as a testing fasta file. Code will work for any fasta file.
+//ParseVCF("niceVCF.vcf", ParseFasta);
+//ParseVCF("niceVCF.vcf");
+ParseFasta("MabFasta.fasta", ScrollVirtually, CreateFastaJSON); //Using test files right now, but parsers will work generically.
 
 
 </script>

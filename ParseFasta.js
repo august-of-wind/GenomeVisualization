@@ -1,4 +1,4 @@
-function ParseFasta(fastaFile, createJSONCallback, scrollVirtuallyCallback) {
+function ParseFasta(fastaFile, scrollVirtuallyCallback, createJSONCallback) {
     var tempArray = [];
     $.get(fastaFile).done(function(data){
       var geneArray = [];
