@@ -38,44 +38,78 @@ function ScrollVirtually(fastaJSON)
 
         var rowEnter = function(rowSelection) {
             rowSelection.append("rect")
-                .attr("rx", 3)
-                .attr("ry", 3)
-                .attr("width", "250")
+                .attr("x", 3)
+                .attr("y", 3)
+                .attr("width", "125")
                 .attr("height", "24")
                 .attr("fill-opacity", 0.25)
                 .attr("stroke", "#999999")
                 .attr("stroke-width", "2px");
+            // rowSelection.append.("rect")
+            //     .attr("x", 6)
+            //     .attr("y", 6)
+            //     .attr("width", "125")
+            //     .attr("height", "24")
+            //     .attr("fill-opacity", 0.25)
+            //     .attr("stroke", "#99999999")
+            //     .attr("stroke-width", "2px");
             rowSelection.append("text")
-                .attr("transform", "translate(10,15)");
+                .attr("transform", "translate(10,20)");
         };
 
+        // var rowEnterVCF = function(rowSelection) {
+        //     rowSelection.append("rect")
+        //         .attr("x", 6)
+        //         .attr("y", 6)
+        //         .attr("width", "125")
+        //         .attr("height", "24")
+        //         .attr("fill-opacity", 0.25)
+        //         .attr("stroke", "#999999")
+        //         .attr("stroke-width", "2px");
+        //     rowSelection.append("text")
+        //         .attr("transform", "translate(10,20)");
+        // };
+        //nice red = #df4440
         var rowUpdate = function(rowSelection) {
             rowSelection.select("rect")
                 .attr("fill", function(d) {
                     if(d.label !== "A" && d.label !== "T" && d.label !== "C" && d.label !== "G"){
-                        console.log("Got blue!");
+                        //if a contig name, fill rect with blue
                         var blue = "#17becf";
                         return blue;
                     }
-                    console.log("Got green")
+                    //if a nucleotide, fill rect with green
                     var green = "#74c476";
                     return green;
                 });
             rowSelection.select("text")
                 .text(function (d) {
-                    //console.log("log10: " + Math.ceil(Math.log10(5000000)));
+                    //Add padding to each nucleotide rect such that all nucleotides are in the same "cell"
+
+                    //check if data is a nucleotide
                     if(d.label == "A" || d.label == "T" || d.label == "C" || d.label == "G")
                     {
-                        var numOfSpaces = 10 - (Math.ceil(Math.log10(d.id)));
-                        return (d.id + Array(numOfSpaces).join("_")) + d.label;
+                        //check if data is either 1 or a power of ten
+                        if(Math.ceil(Math.log10(d.id)) == Math.log10(d.id))
+                        {
+                            var numOfSpaces = 10 - (Math.ceil(Math.log10(d.id)));
+                            return (d.id +  "." + Array(numOfSpaces).join("\xA0")) + d.label;
+                        }
+                        //otherwise, check the number of digits in the data and add padding based on that such that there is always 10u padding
+                        if(Math.ceil(Math.log10(d.id)) > Math.log10(d.id))
+                        {
+                            var numOfSpaces = 11 - (Math.ceil(Math.log10(d.id)));
+                            return (d.id + "." + Array(numOfSpaces).join("\xA0")) + d.label;
+                        }
                     }
+                    //if none of the criteria above is fulfilled, the data must be a contig name and doesn't require anything but the contig name
                     else
                     {
                         return d.label;
                     }
-                    
                 });
-        };
+            };
+
 
         var rowExit = function(rowSelection) {
         };
@@ -128,5 +162,5 @@ function ScrollVirtually(fastaJSON)
                 .attr("in", "SourceGraphic")
                 .attr("in2", "blurOut")
                 .attr("mode", "normal");
-            }
         }
+    }
