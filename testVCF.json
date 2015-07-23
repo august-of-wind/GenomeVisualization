@@ -1,0 +1,12 @@
+{"items": [
+        {"ALT":"CAAA", "CHROM":"Mab_g","POS":"81390"},
+        {"ALT":"ACC", "CHROM":"Mab_g","POS":"81392"},
+        {"ALT":"C", "CHROM":"Mab_g","POS":"280242"},
+        {"ALT":"A", "CHROM":"Mab_g","POS":"1150461"},
+        {"ALT":"A", "CHROM":"A","POS":"2106418"},
+        {"ALT":"CGGGGG", "CHROM":"Mab_g", "POS":"2635537"},
+        {"ALT":"ATGCTCAAATGTGCGCAAATCGGACGATTTTGCGCACATTTGAGCATGCTCGCGCTT", "CHROM":"Mab_g", "POS":"2896546"},
+        {"ALT":"G", "CHROM":"Mab_g", "POS":"3831238"},
+        {"ALT":"CGGG", "CHROM":"Mab_g", "POS":"4948086"}
+        ]
+}
