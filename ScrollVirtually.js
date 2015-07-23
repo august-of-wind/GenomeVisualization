@@ -1,12 +1,26 @@
 //The following code is based on VirtualScroller.js by Bill D White, adapted for use with bioinformatic research at Argonne National Laboratory
 
-function ScrollVirtually(JsonData)
+function ScrollVirtually(fastaJSON)
 {
-        var data = JSON.parse(JsonData);
+        var data = JSON.parse(fastaJSON);
 
-       console.log("Done Parsing!");
+        var vcf = 
+        {items: [
+        {ALT:"CAAA", CHROM:"Mab_g",POS:"81390"},
+        {ALT:"ACC", CHROM:"Mab_g",POS:"81392"},
+        {ALT:"C", CHROM:"Mab_g",POS:"280242"},
+        {ALT:"A", CHROM:"Mab_g",POS:"1150461"},
+        {ALT:"A", CHROM:"A",POS:"2106418"},
+        {ALT:"CGGGGG", CHROM:"Mab_g", POS:"2635537"},
+        {ALT:"ATGCTCAAATGTGCGCAAATCGGACGATTTTGCGCACATTTGAGCATGCTCGCGCTT", CHROM:"Mab_g", POS:"2896546"},
+        {ALT:"G", CHROM:"Mab_g", POS:"3831238"},
+        {ALT:"CGGG", CHROM:"Mab_g", POS:"4948086"}
+        ]
+}
 
-        var colorScale = d3.scale.category20();
+        console.log("Done Parsing!");
+
+
 
         var scrollSVG = d3.select(".viewport").append("svg")
             .attr("class", "scroll-svg");
@@ -38,11 +52,28 @@ function ScrollVirtually(JsonData)
         var rowUpdate = function(rowSelection) {
             rowSelection.select("rect")
                 .attr("fill", function(d) {
-                    return colorScale(d.id);
+                    if(d.label !== "A" && d.label !== "T" && d.label !== "C" && d.label !== "G"){
+                        console.log("Got blue!");
+                        var blue = "#17becf";
+                        return blue;
+                    }
+                    console.log("Got green")
+                    var green = "#74c476";
+                    return green;
                 });
             rowSelection.select("text")
                 .text(function (d) {
-                    return (d.index + 1) + ". " + d.label;
+                    //console.log("log10: " + Math.ceil(Math.log10(5000000)));
+                    if(d.label == "A" || d.label == "T" || d.label == "C" || d.label == "G")
+                    {
+                        var numOfSpaces = 10 - (Math.ceil(Math.log10(d.id)));
+                        return (d.id + Array(numOfSpaces).join("_")) + d.label;
+                    }
+                    else
+                    {
+                        return d.label;
+                    }
+                    
                 });
         };
 
@@ -51,12 +82,12 @@ function ScrollVirtually(JsonData)
 
 
         var virtualScroller = d3.VirtualScroller()
-            .rowHeight(24)
+            .rowHeight(30)
             .enter(rowEnter)
             .update(rowUpdate)
             .exit(rowExit)
             .svg(scrollSVG)
-            .totalRows(5090494)
+            .totalRows(5090493)
             .viewport(d3.select(".viewport"));
 
         // tack on index to each data item for easy to read display
@@ -99,4 +130,3 @@ function ScrollVirtually(JsonData)
                 .attr("mode", "normal");
             }
         }
-        //CGAGAAGGTCAGG
