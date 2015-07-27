@@ -9,7 +9,7 @@ function CreateFastaJSON(parsedData)
 
     var idCount = 0;
     var contigCount = 0;
-
+    //edited from geneArrayIndex < geneArrayLength to geneArrayIndex < 100 for testing purposes
     for(geneArrayIndex = 0; geneArrayIndex < geneArrayLength; geneArrayIndex++)
     {
         var contig =

@@ -163,4 +163,8 @@ function ScrollVirtually(fastaJSON)
                 .attr("in2", "blurOut")
                 .attr("mode", "normal");
         }
+<<<<<<< HEAD
     }
+=======
+    }
+>>>>>>> 759f438fff71050f72b3cfdaa3a1268566a2fbda
