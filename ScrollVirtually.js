@@ -21,7 +21,6 @@ function ScrollVirtually(fastaJSON)
         console.log("Done Parsing!");
 
 
-
         var scrollSVG = d3.select(".viewport").append("svg")
             .attr("class", "scroll-svg");
 
