@@ -4,22 +4,27 @@ function ScrollVirtually(fastaJSON)
 {
         var data = JSON.parse(fastaJSON);
 
+        //for the vcf, I am using the same JSON format as fastaJSON uses. The legend is below:
+        //id: POS
+        //name: CHROM
+        //label: ALT
         var vcf = 
         {items: [
-        {ALT:"CAAA", CHROM:"Mab_g",POS:"81390"},
-        {ALT:"ACC", CHROM:"Mab_g",POS:"81392"},
-        {ALT:"C", CHROM:"Mab_g",POS:"280242"},
-        {ALT:"A", CHROM:"Mab_g",POS:"1150461"},
-        {ALT:"A", CHROM:"A",POS:"2106418"},
-        {ALT:"CGGGGG", CHROM:"Mab_g", POS:"2635537"},
-        {ALT:"ATGCTCAAATGTGCGCAAATCGGACGATTTTGCGCACATTTGAGCATGCTCGCGCTT", CHROM:"Mab_g", POS:"2896546"},
-        {ALT:"G", CHROM:"Mab_g", POS:"3831238"},
-        {ALT:"CGGG", CHROM:"Mab_g", POS:"4948086"}
+        {label:"CAAA", name:"Mab_g", id:"81390"},
+        {label:"ACC", name:"Mab_g",id:"81392"},
+        {label:"C", name:"Mab_g", id:"280242"},
+        {label:"A", name:"Mab_g", id:"1150461"},
+        {label:"A", name:"A",id:"2106418"},
+        {label:"CGGGGG", name:"Mab_g", id:"2635537"},
+        {label:"ATGCTCAAATGTGCGCAAATCGGACGATTTTGCGCACATTTGAGCATGCTCGCGCTT", name:"Mab_g", id:"2896546"},
+        {label:"G", name:"Mab_g", id:"3831238"},
+        {label:"CGGG", name:"Mab_g", id:"4948086"}
         ]
-}
+        }
+
+        var merged = $.merge(data.items, vcf.items);
 
         console.log("Done Parsing!");
-
 
         var scrollSVG = d3.select(".viewport").append("svg")
             .attr("class", "scroll-svg");
@@ -37,38 +42,36 @@ function ScrollVirtually(fastaJSON)
 
         var rowEnter = function(rowSelection) {
             rowSelection.append("rect")
-                .attr("x", 3)
-                .attr("y", 3)
+                .attr("rx", 3)
+                .attr("ry", 3)
                 .attr("width", "125")
-                .attr("height", "24")
+                .attr("height", "30")
                 .attr("fill-opacity", 0.25)
                 .attr("stroke", "#999999")
                 .attr("stroke-width", "2px");
-            // rowSelection.append.("rect")
-            //     .attr("x", 6)
-            //     .attr("y", 6)
-            //     .attr("width", "125")
-            //     .attr("height", "24")
-            //     .attr("fill-opacity", 0.25)
-            //     .attr("stroke", "#99999999")
-            //     .attr("stroke-width", "2px");
             rowSelection.append("text")
                 .attr("transform", "translate(10,20)");
         };
 
-        // var rowEnterVCF = function(rowSelection) {
-        //     rowSelection.append("rect")
-        //         .attr("x", 6)
-        //         .attr("y", 6)
-        //         .attr("width", "125")
-        //         .attr("height", "24")
-        //         .attr("fill-opacity", 0.25)
-        //         .attr("stroke", "#999999")
-        //         .attr("stroke-width", "2px");
-        //     rowSelection.append("text")
-        //         .attr("transform", "translate(10,20)");
-        // };
-        //nice red = #df4440
+        //rowEnterVCF aims to append rows to show variations next to the reference genome. So far, invoking it causes the 
+        //reference gene visualization to become greyed out. As such, I have also commented out its invocation on line 141.
+
+        var rowEnterVCF = function(rowSelection) {
+            rowSelection.append("rect")
+                .attr("x",200)
+                .attr("y", 3)
+                .attr("width", "125")
+                .attr("height", "30")
+                .attr("fill-opacity", 0.25)
+                .attr("stroke", "#999999")
+                .attr("stroke-width", "2px")
+                .attr("fill", "#df4440");
+            rowSelection.append("text")
+                .attr("transform", "translate(10,20)");
+        };
+
+        //red = #df4440. I chose this because it chromatically compliments the existing shade of green I use for the reference gene
+
         var rowUpdate = function(rowSelection) {
             rowSelection.select("rect")
                 .attr("fill", function(d) {
@@ -109,6 +112,23 @@ function ScrollVirtually(fastaJSON)
                 });
             };
 
+        //Below is an as-yet-unimplemented solution for updating variant data to the visualization in rows next to the reference genome
+
+        // var variantUpdate = function(rowSelection)
+        // {
+        //     rowSelection.selectAll("rect")
+        //         .append("rect")
+        //         .attr("fill", function(d) {
+        //             if(d.id == vcf.items[i].POS)
+        //             {
+        //                 var red = "#df4440";
+        //                 return red;
+        //             }
+        //         });
+        //         rowSelection.select("text")
+        //             .append("text")
+        //             .text(vcf.items[i].ALT);
+        // }
 
         var rowExit = function(rowSelection) {
         };
@@ -118,6 +138,7 @@ function ScrollVirtually(fastaJSON)
             .rowHeight(30)
             .enter(rowEnter)
             .update(rowUpdate)
+            //.update(rowEnterVCF)
             .exit(rowExit)
             .svg(scrollSVG)
             .totalRows(5090493)
@@ -161,5 +182,5 @@ function ScrollVirtually(fastaJSON)
                 .attr("in", "SourceGraphic")
                 .attr("in2", "blurOut")
                 .attr("mode", "normal");
+            }
         }
-    }
