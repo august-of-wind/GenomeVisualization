@@ -75,7 +75,8 @@ function ScrollVirtually(fastaJSON)
 
         //red = #df4440. I chose this because it chromatically compliments the existing shade of green I use for the reference gene
 
-        var rowUpdate = function(rowSelection) {
+        var rowUpdate = function(rowSelection)
+        {
             rowSelection.select("rect")
                 .attr("fill", function(d) {
                     if(d.label !== "A" && d.label !== "T" && d.label !== "C" && d.label !== "G"){
