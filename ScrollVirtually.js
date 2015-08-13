@@ -21,9 +21,19 @@ function ScrollVirtually(fastaJSON)
         {label:"CGGG", name:"Mab_g", id:"4948086"}
         ]
         }
+<<<<<<< HEAD
+=======
+        console.log("id of var: " + vcf.items[0].id);
+
+>>>>>>> master
 
         var merged = $.merge(data.items, vcf.items);
 
+<<<<<<< HEAD
+=======
+        var merged = $.merge(data.items, vcf.items);
+
+>>>>>>> master
         console.log("Done Parsing!");
 
         var scrollSVG = d3.select(".viewport").append("svg")
@@ -44,7 +54,11 @@ function ScrollVirtually(fastaJSON)
             rowSelection.append("rect")
                 .attr("rx", 3)
                 .attr("ry", 3)
+<<<<<<< HEAD
                 .attr("width", "125")
+=======
+                .attr("width", "200")
+>>>>>>> master
                 .attr("height", "30")
                 .attr("fill-opacity", 0.25)
                 .attr("stroke", "#999999")
@@ -56,6 +70,7 @@ function ScrollVirtually(fastaJSON)
         //rowEnterVCF aims to append rows to show variations next to the reference genome. So far, invoking it causes the 
         //reference gene visualization to become greyed out. As such, I have also commented out its invocation on line 141.
 
+<<<<<<< HEAD
         var rowEnterVCF = function(rowSelection) {
             rowSelection.append("rect")
                 .attr("x",200)
@@ -73,6 +88,26 @@ function ScrollVirtually(fastaJSON)
         //red = #df4440. I chose this because it chromatically compliments the existing shade of green I use for the reference gene
 
         var rowUpdate = function(rowSelection) {
+=======
+        // var rowEnterVCF = function(rowSelection) {
+        //     rowSelection.append("rect")
+        //         .attr("x",200)
+        //         .attr("y", 3)
+        //         .attr("width", "175")
+        //         .attr("height", "30")
+        //         .attr("fill-opacity", 0.25)
+        //         .attr("stroke", "#999999")
+        //         .attr("stroke-width", "2px")
+        //         .attr("fill", "#df4440");
+        //     rowSelection.append("text")
+        //         .attr("transform", "translate(10,20)");
+        // };
+
+        //red = #df4440. I chose this because it chromatically compliments the existing shade of green I use for the reference gene
+
+        var rowUpdate = function(rowSelection)
+        {
+>>>>>>> master
             rowSelection.select("rect")
                 .attr("fill", function(d) {
                     if(d.label !== "A" && d.label !== "T" && d.label !== "C" && d.label !== "G"){
@@ -88,32 +123,63 @@ function ScrollVirtually(fastaJSON)
                 .text(function (d) {
                     //Add padding to each nucleotide rect such that all nucleotides are in the same "cell"
 
-                    //check if data is a nucleotide
-                    if(d.label == "A" || d.label == "T" || d.label == "C" || d.label == "G")
+                    //check if data is a nucleotide that has a variant at it's index
+                if(d.label == "A" || d.label == "T" || d.label == "C" || d.label == "G")
+                {
+                    console.log("vcfLen: " + vcf.items.length);
+                    for(var vcfIndex = 0, vcfLen = vcf.items.length; vcfIndex < vcfLen; vcfIndex++)
                     {
-                        //check if data is either 1 or a power of ten
-                        if(Math.ceil(Math.log10(d.id)) == Math.log10(d.id))
+                        console.log("Made it to variant check!");
+                        if(d.id == vcf.items[vcfIndex].id)
                         {
-                            var numOfSpaces = 10 - (Math.ceil(Math.log10(d.id)));
-                            return (d.id +  "." + Array(numOfSpaces).join("\xA0")) + d.label;
-                        }
-                        //otherwise, check the number of digits in the data and add padding based on that such that there is always 10u padding
-                        if(Math.ceil(Math.log10(d.id)) > Math.log10(d.id))
+                        
                         {
-                            var numOfSpaces = 11 - (Math.ceil(Math.log10(d.id)));
-                            return (d.id + "." + Array(numOfSpaces).join("\xA0")) + d.label;
+                            //check if data is either 1 or a power of ten
+                            if(Math.ceil(Math.log10(d.id)) == Math.log10(d.id))
+                            {
+                                var numOfSpaces = 10 - (Math.ceil(Math.log10(d.id)));
+                                return (d.id +  "." + Array(numOfSpaces).join("\xA0")) + d.label + "\xA0\xA0\xA0Variant: " + vcf.items[vcfIndex].label;
+                            }
+                            //otherwise, check the number of digits in the data and add padding based on that such that there is always 10u padding
+                            if(Math.ceil(Math.log10(d.id)) > Math.log10(d.id))
+                            {
+                                var numOfSpaces = 11 - (Math.ceil(Math.log10(d.id)));
+                                return (d.id + "." + Array(numOfSpaces).join("\xA0")) + d.label + "\xA0\xA0\xA0Variant: " + vcf.items[vcfIndex].label;
+                            }
                         }
+                        }
+
                     }
-                    //if none of the criteria above is fulfilled, the data must be a contig name and doesn't require anything but the contig name
-                    else
+                    //check if data is either 1 or a power of ten, but has no variant (this is most cases)
+                    if(Math.ceil(Math.log10(d.id)) == Math.log10(d.id))
                     {
-                        return d.label;
+                        var numOfSpaces = 10 - (Math.ceil(Math.log10(d.id)));
+                        return (d.id +  "." + Array(numOfSpaces).join("\xA0")) + d.label;
                     }
+                    //otherwise, check the number of digits in the data and add padding based on that such that there is always 10u padding
+                    if(Math.ceil(Math.log10(d.id)) > Math.log10(d.id))
+                    {
+                        var numOfSpaces = 11 - (Math.ceil(Math.log10(d.id)));
+                        return (d.id + "." + Array(numOfSpaces).join("\xA0")) + d.label;
+                    }
+                }
+                //if none of the criteria above is fulfilled, the data must be a contig name and doesn't require anything but the contig name
+                else
+                {
+                    return d.label;
+                }
                 });
-            };
+        };
+
+
 
         //Below is an as-yet-unimplemented solution for updating variant data to the visualization in rows next to the reference genome
 
+<<<<<<< HEAD
+        //Below is an as-yet-unimplemented solution for updating variant data to the visualization in rows next to the reference genome
+
+=======
+>>>>>>> master
         // var variantUpdate = function(rowSelection)
         // {
         //     rowSelection.selectAll("rect")
